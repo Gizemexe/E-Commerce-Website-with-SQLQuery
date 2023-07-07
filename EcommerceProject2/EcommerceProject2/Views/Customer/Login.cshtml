@@ -1,0 +1,138 @@
+﻿@model EcommerceProject2.Models.Customer
+@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        Body {
+            font-family: Calibri, Helvetica, sans-serif;
+            background-color: #d3d3d3;
+        }
+
+
+        form {
+            border: 3px solid #f1f1f1;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            opacity: 0.7;
+        }
+
+        .but {
+            color: white;
+            background-color: #9b9b9b;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .tbl {
+            margin-left: 25px;
+            padding-right: 25px;
+        }
+
+        .container {
+            padding: 25px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+       
+        <form>
+            <div style="margin-bottom:175px" margin>
+                <h1 style="margin-left:135px; font-size:50px"> Customer Login </h1>
+
+                <table class="tbl">
+                    <tr>
+                        <th style="width:45%">
+                            <label style="font-size:16px;"><b>Customer E-mail : </b></label>
+                        </th>
+
+
+                        <td>
+                            @Html.TextBoxFor(x => x.Customer_Email, new { @class = "form", @placeholder = "E-mail" })
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;
+                            @Html.ValidationMessageFor(x => x.Customer_Email, "", new { @style = "color:red" })
+                        </td>
+                        <br />
+                    </tr>
+                    <tr>
+                        <th>
+                            <label style="font-size:16px;"><b>Password : </b></label>
+                        </th>
+
+                        <td>
+                            @Html.PasswordFor(x => x.Password, new { @class = "form", @placeholder = "Password" })
+                        </td>
+
+                        <td>
+                            &nbsp;&nbsp;
+                            @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red" })
+                        </td>
+                        <br />
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align:right;">
+                            <a href="#"> Forgot password? </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <br />
+                            <input type="submit" value="Login" class="btn btn-success; but" /> &nbsp;&nbsp;
+                            <input type="checkbox" checked="checked"> Remember me
+                        </td>
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <br />
+                            <p style="color:red">@ViewBag.error</p>
+
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            Do not have an account?
+
+                            @Html.ActionLink("Sign Up", "SignUp", "Customer", new { target = "_blank", name = "link", style = "color : blue" })
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </form>
+    }
+</body>
+</html>
+
+
+
+
+
+

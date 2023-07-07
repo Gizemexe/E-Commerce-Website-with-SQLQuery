@@ -1,0 +1,57 @@
+﻿@using EcommerceProject2.Models;
+@model IEnumerable<Inventory_Table>
+@{
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<html>
+
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <h1 style="text-align:center">Stocks - Inventory</h1>
+
+    <table>
+        <tr>
+            <th>Stock ID</th>
+            <th>Quantity</th>
+            
+
+        </tr>
+        @foreach (var item in (IEnumerable<Inventory_Table>)TempData["Inventory"])
+        {
+            <tr>
+                <td>@item.Inventory_id</td>
+                <td>@item.quantity</td>
+  
+            </tr>
+        }
+
+
+    </table>
+    <br />
+   
+</body>
+</html>
+
+

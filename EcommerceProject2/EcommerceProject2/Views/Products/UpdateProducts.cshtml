@@ -1,0 +1,126 @@
+﻿@model EcommerceProject2.Models.Products
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update Products</title>
+    <style>
+        Body {
+            font-family: Calibri, Helvetica, sans-serif;
+            background-color: #e83137;
+        }
+
+        button {
+            background-color: #4CAF50;
+            width: 100%;
+            color: orange;
+            padding: 15px;
+            margin: 10px 0px;
+            border: none;
+            cursor: pointer;
+        }
+
+        form {
+            border: 3px solid #000203;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            opacity: 0.7;
+        }
+
+
+        .tbl {
+            margin-left: 25px;
+            padding-right: 25px;
+        }
+
+
+        .container {
+            padding: 25px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("UpdateProducts", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(x => x.Product_id) <!-- Ekledim: Ürün ID'sini gizli alan olarak göndermek için -->
+
+        <div style="margin-bottom:295px">
+            <h2 style="margin-left:155px; font-size:35px;"><b>Update Product</b></h2>
+            <br />
+            <table class="tbl">
+                <tr>
+                    <th>
+                        <label style="font-size:18px">Category: </label>
+                    </th>
+                    <td>
+                        @Html.DropDownListFor(x => x.Category.Category_id, (List<SelectListItem>)ViewBag.CategoryList, "--Select--", new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label style="font-size:18px">Product Name: </label>
+                    </th>
+                    <td>
+                        @Html.TextBoxFor(x => x.Product_name, new { @class = "form-control", @placeholder = "enter product name" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label style="font-size:18px">Price: </label>
+                    </th>
+                    <td>
+                        @Html.TextBoxFor(x => x.price, new { @class = "form-control", @placeholder = "enter product price" })
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width:40%">
+                        <label style="font-size:17px">Product Description: </label>
+                    </th>
+                    <td>
+                        @Html.TextBoxFor(x => x.Product_Desc, new { @class = "form-control", @placeholder = "enter product description" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label style="font-size:18px">Stock: </label>
+                    </th>
+                    <td>
+                        @Html.DropDownListFor(x => x.Inventory_Table.Inventory_id, (List<SelectListItem>)ViewBag.Stock, "--Select--", new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label style="font-size:18px">Product image: </label>
+                    </th>
+                    <td>
+                        <input type="file" id="img" name="img" class="input" value="upload image" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <br />
+                        <input type="submit" value="Update" class="btn btn-danger" />
+                    </td>
+                    <td>
+                       <br />
+                        <button class="btn btn-warning" onclick="location.href='@Url.Action("Index", "Products")';return false;">Cancel</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+</body>
+</html>

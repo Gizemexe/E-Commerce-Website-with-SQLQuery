@@ -1,0 +1,115 @@
+﻿@model EcommerceProject2.Models.Category
+@{
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Category</title>
+    <style>
+        Body {
+            font-family: Calibri, Helvetica, sans-serif;
+            background-color: #D3DEEE;
+        }
+
+        button {
+            background-color: #4CAF50;
+            width: 100%;
+            color: orange;
+            padding: 15px;
+            margin: 10px 0px;
+            border: none;
+            cursor: pointer;
+        }
+
+        form {
+            border: 3px solid #000203;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            opacity: 0.7;
+        }
+
+
+
+        .tbl {
+            margin-right:150px;
+
+            
+        }
+
+
+        .container {
+            padding: 25px;
+            background-color: #F9F9F9;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Category", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <form>
+            <div style="margin-bottom:295px">
+                <h1 style="text-align:center"> Add Category </h1>
+                <br>
+                <center>
+                    <table class="tbl">
+                        <tr>
+                            <th style="width:40%">
+                                <label style="font-size:16px">Category Name : </label>
+                            </th>
+
+                            <td>
+                                @Html.TextBoxFor(x => x.Category_name, new { @class = "form", @placeholder = "Category Name" })
+                            </td>
+                            <td>
+                                @Html.ValidationMessageFor(x => x.Category_name, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label style="font-size:16px">Upload Image:</label>
+                            </th>
+                            <td>
+                                <input type="file" id="imgfile" class="form-control" name="imgfile" value="Add" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label style="font-size:16px">Category Decsription : </label>
+                            </th>
+                            <td>
+                                @Html.TextBoxFor(x => x.Category_Desc, new { @class = "form", @placeholder = "Write here the category Description" })
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" id="button" value="Add" class="btn btn-primary" />
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
+
+
+
+
+        </form>
+    }
+</body>
+</html>
+

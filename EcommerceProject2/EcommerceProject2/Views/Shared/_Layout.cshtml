@@ -1,0 +1,84 @@
+﻿@{
+    bool isLoggedIn = true;
+    if (string.IsNullOrWhiteSpace(User.Identity.Name))
+    {
+        isLoggedIn = false;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <title>@ViewBag.Title - GGEZ Official Online Store</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("GGEZ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse" style="font-size:16px">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+
+                    @{
+                        if (isLoggedIn)
+                        {
+                            if (Session["Admin_id"] != null && Session["Customer_id"] == null)
+                            {
+                                <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+                                <li>@Html.ActionLink("Stocks", "Inventory", "Admin")</li>
+                                <li>@Html.ActionLink("Categories", "Index", "Admin")</li>
+                                <li>@Html.ActionLink("Add Products", "Products", "Products")</li>
+                                <li>@Html.ActionLink("Products", "Index", "Products")</li>
+                                <li style="position: relative; left: 695px;">@Html.ActionLink(User.Identity.Name, "AdminContact", "Home", new { id = Convert.ToInt32(Session["Admin_id"].ToString()) }, null)</li>
+                                <li style="position: relative; left: 700px;">@Html.ActionLink("Log Out", "LogOut", "Admin")</li>
+
+                            }
+                            if (Session["Customer_id"] != null)
+                            {
+
+                                <li>
+                                    <a class="navbar-link px-lg-4" href="~/Cart/GetOrderCartItems"><img src="~/Content/Images/cart.png" width="30" height="30" /> &nbsp; @{ Html.RenderAction("TotalCount", "Cart");}</a>   
+                                </li>
+                                <li style="position: relative; left: 895px;">@Html.ActionLink(User.Identity.Name, "Contact", "Home", new {id = Convert.ToInt32(Session["Customer_id"].ToString()) },null)</li>
+                                <li style="position: relative; left: 900px;">@Html.ActionLink("Log Out", "LogOut", "Customer")</li>
+
+                            }
+                        }
+                        else
+                        {
+                            <li> @Html.ActionLink("Admin Login", "Login", "Admin")</li>
+                            <li style="float:right">@Html.ActionLink("Customer Login", "Login", "Customer")</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - GGEZ Group Consulting Communication and Sales Trade.A.Sh.- All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

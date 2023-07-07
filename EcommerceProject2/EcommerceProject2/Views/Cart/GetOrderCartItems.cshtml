@@ -1,0 +1,126 @@
+﻿
+@using EcommerceProject2.Models
+@model IEnumerable<Order_Cart_Table>
+
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+            font-size: 20px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        .div li{
+            display:inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="font-size:35px">My Cart</h2>
+        <br />
+
+    <p style="font-size:20px">Customer Username: @Session["Customer_Email"]</p>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product Name </th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+         
+            @foreach (var item in Model)
+            {
+                
+                <tr>
+                    <td><img class="card-img-top" src="../@item.Products.image" alt="@item.Products.Product_name" height="150"></td>
+                    <td>@(item.Products?.Product_name)</td> 
+                    <td>@item.Order_Total</td>
+                    <td>@item.Amount</td>
+
+
+                    <td>
+                        @using (Html.BeginForm("RemoveFromOrderCart", "Cart", FormMethod.Post))
+                        {
+                            @Html.Hidden("orderCartId", item.Order_Cart_id)
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        }
+
+                    </td>
+
+                </tr>
+
+            }
+            </tbody>
+            <tfoot>
+                <tr></tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th><strong>Total Price:</strong></th>
+                    <td><strong>@ViewBag.TotalPrice</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+
+                </tr>
+            </tfoot>
+        </table>
+    <br />
+    <div class="d">
+
+        <form method="post" action="@Url.Action("BuyNow", "Orders")">
+            <button type="submit" class="btn btn-warning" style=" margin-left:965px; font-size:18px; width:120px; height:40px"> Order Now </button>
+
+        </form>
+        <br />
+        <form action="@Url.Action("Index","Home")">
+            <button type="submit" class="btn btn-info" style=" font-size:18px; width:200px; height:40px">Countinue Shopping</button>
+        </form>
+
+
+
+    </div>
+    
+</body>
+</html>
+
+
+

@@ -1,0 +1,86 @@
+﻿
+@using EcommerceProject2.Models
+@model IEnumerable<Order_Table>
+@{
+    ViewBag.Title = "Order_Table";
+}
+
+<html>
+<head>
+    <title>Orders</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <script src="myjs.js"></script>
+    <style>
+        body {
+            background-color: white;
+            text-align: center;
+        }
+
+        table {
+            background: lemonchiffon;
+            margin: 5px;
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px black;
+            border-radius: 25px;
+        }
+
+        td, th {
+            border: 1px solid white;
+            border-spacing: 0px;
+            margin: 0px;
+            text-align: center;
+            padding: 8px;
+            border: 2px solid gray;
+            border-radius: 15px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+    <h2>Orders</h2>
+
+    <p id="p1"><p>
+        <center>
+            <table id="page">
+
+                <tr>
+                    <th>Order ID</th>
+                    <th>Cart ID</th>
+                    <th>Customer UserName</th>
+                    <th>Product Name</th>
+                    <th>Total</th>
+                    <th>Amount</th>
+
+
+                </tr>
+
+                @foreach (var item in (IEnumerable<Order_Table>)TempData["orders"])
+                {
+                   
+                    <tr>
+                        <td>@item.Order_id</td>
+                        <td>@item.Order_Cart_id</td>
+                         <td>@item.Customer.First_name</td>  
+                         <td>@item.Products.Product_name</td>                       
+                         <td>@item.Total</td>
+                         <td>@item.amount</td>
+                    </tr>
+                }
+
+            </table>
+        </center>
+    </p>
+    <script>
+        var date = new Date();
+        document.getElementById("p1").innerHTML = date;
+    </script>
+</body>
+</html>
+

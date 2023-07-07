@@ -1,0 +1,25 @@
+﻿@model EcommerceProject2.Models.Customer
+@{
+    ViewBag.Title = "Contact";
+}
+<div>
+    <br />
+    <img src="~/Content/Images/userjpg.jpg" style="margin-left:0px" width="100" height="100" />
+
+    <h2><b>Customer Informations</b></h2>
+    <h3><b>Email-Username: </b> @Session["Customer_Email"]</h3>
+</div>
+<div>
+    <address style="font-size: 25px">
+        <b>Name-Surname :</b> @Model.First_name - @Model.Last_name<br />
+        <b> Adress:</b> @Model.Address<br />
+        <p title="Phone"><b>Phone Number:</b> @Model.Phone</p>
+
+    </address>
+</div>
+<br />
+<br />
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+
+</address>

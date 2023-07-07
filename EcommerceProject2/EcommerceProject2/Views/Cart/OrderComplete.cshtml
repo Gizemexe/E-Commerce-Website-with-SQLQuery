@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "OrderComplete";
+}
+<html>
+<head>
+    <style>
+        .center {
+            margin: auto;
+            padding: 10px;
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center">Order is Completed</h1>
+    <div class="center">
+    <img src="~/Content/Images/mark.gif" style="width:445px;height:350px;" alt="Windows Firewall">
+    
+    <p style="text-align: center; font-size: 30px"> Your order has been received. <br />Have a nice shopping...</p>
+    
+</div>
+    <p style=" text-align:center; font-size:25px">
+        @Html.ActionLink("Continue Shopping", "Index","Home")
+    </p>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿
+@using EcommerceProject2.Models;
+@model IEnumerable<Products>
+@{
+    ViewBag.Title = "Categories";
+}
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        section#product-gallery {
+            text-align: center;
+        }
+
+        .product {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+
+            .product img {
+                width: 200px;
+                height: 200px;
+            }
+
+        .product {
+            border: 1px solid #E8E3E4;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <br />
+        <section id="product-gallery">
+            <h2 style="font-size:32px">Products</h2>
+            <br />
+            <div class="row">
+                @foreach (var product in (IEnumerable<Products>)TempData["product"])
+                {
+                    <div class="col-md-4">
+                        <div class="card, product">
+                            <img class="card-img-top" src="~/@product.image" alt="@product.Product_name" height="300">
+                            <div class="card-body">
+                                <h4 class="card-title" style="font-size:23px">
+                                    <a href="/Home/Details/@product.Product_id"> @product.Product_name</a> @*Shows details for each products*@
+                                </h4>
+                                <p class="card-text">
+                                    @product.Product_Desc
+                                </p>
+                            </div>
+                            <div class="card-footer" style="font-size: 16px">
+                                Fiyat:$ @product.price
+
+                            </div>
+                            <div class="card-footer">
+                                <br />
+                                <form method="post" action="@Url.Action("AddToOrderCart", "Cart", new { productId = product.Product_id ,price =product.price, amount=1})">
+
+                                    <button type="submit" class="fa fa-shopping-cart" style="font-size:20px; color:white; background-color:forestgreen; border-color:forestgreen"> Add To Cart</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+

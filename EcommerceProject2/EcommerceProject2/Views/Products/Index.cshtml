@@ -1,0 +1,76 @@
+﻿@using EcommerceProject2.Models;
+@model IEnumerable<Products>
+@{
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<html>
+
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <h1 style="text-align:center">Product Table</h1>
+
+    <table>
+        <tr>
+            <th>ProductID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Update</th>
+            <th>Delete</th>
+
+        </tr>
+        @foreach (var item in (IEnumerable<Products>)TempData["products"])
+        {
+            <tr>
+                <td>@item.Product_id</td>
+                <td>@item.Product_name</td>
+                
+                <td>@item.Product_Desc</td>
+                <td>@item.price $</td>
+                <td>@item.Category.Category_name </td>
+                <td> <img src="../@item.image" class="card-img-top" alt="..." height="100"> </td>
+
+                <td>
+
+                    @Html.ActionLink("Update", "UpdateProducts", new { productID = item.Product_id, img = item.image })
+
+                </td>
+                <td>
+                    <form method="post" action="@Url.Action("DeleteProducts", "Products", new { productID = item.Product_id })">
+                        <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?');" />
+                    </form>
+                </td>
+            </tr>
+        }
+
+
+    </table>
+    <br />
+    @Html.ActionLink("Return Adding Product Page", "Products")
+</body>
+</html>
+

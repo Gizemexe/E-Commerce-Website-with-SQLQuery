@@ -1,0 +1,212 @@
+﻿@model EcommerceProject2.Models.Customer
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sign Up</title>
+    <style>
+        Body {
+            font-family: Calibri, Helvetica, sans-serif;
+            background-color: #FF6C00;
+        }
+
+
+        form {
+            border: 3px solid #f1f1f1;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            margin: 8px 0;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 2px solid black;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            opacity: 0.7;
+        }
+
+        .but {
+            color: white;
+            background-color: #FF6C00;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .tbl {
+            margin-left: 25px;
+            padding-right: 25px;
+        }
+
+        .container {
+            padding: 25px;
+            background-color: white;
+        }
+    </style>
+
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+       
+        <form>
+            <div style="margin-bottom:175px">
+                <h1 style="margin-left:135px;  font-size:50px"> Sign Up </h1>
+                <br />
+                <table class="tbl">
+                    <tr>
+                        <th style="width:40%">
+                            <label style="font-size:16px;"><b>Customer E-mail : </b></label>
+                        </th>
+                        <td>
+                            @Html.TextBoxFor(x => x.Customer_Email, new { @class = "form", @placeholder = "E-mail" })
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;
+                            @Html.ValidationMessageFor(x => x.Customer_Email, "", new { @style = "color:red" })
+                        </td>
+
+
+                    </tr>
+
+                    <tr>
+                        <th>
+                            <label style="font-size:16px;"><b>First Name : </b></label>
+                        </th>
+
+
+                        <td>
+                            @Html.TextBoxFor(x => x.First_name, new { @class = "form", @placeholder = "First Name" })
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;
+                            @Html.ValidationMessageFor(x => x.First_name, "", new { @style = "color:red" })
+                        </td>
+
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            <label style="font-size:16px;"><b>Last Name : </b></label>
+
+                        </th>
+
+
+
+                        <td>
+                            @Html.TextBoxFor(x => x.Last_name, new { @class = "form", @placeholder = "Last Name" })
+                        </td>
+
+                        <td>
+                            &nbsp;&nbsp;
+                            @Html.ValidationMessageFor(x => x.Last_name, "", new { @style = "color:red" })
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+                            <label style="font-size:16px;"><b>Password : </b></label>
+                        </th>
+
+                        <td>
+                            @Html.PasswordFor(x => x.Password, new { @class = "form", @placeholder = "Password" })
+                        </td>
+
+
+                        <td>
+                            &nbsp;&nbsp;
+                            @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red" })
+                        </td>
+
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            <label style="font-size:16px;"><b>Address : </b></label>
+
+                        </th>
+
+
+
+                        <td>
+                            @Html.TextBoxFor(x => x.Address, new { @class = "form", @placeholder = "e.g İstanbul" })
+                        </td>
+
+                        <td>
+                            &nbsp;&nbsp;
+                            @Html.ValidationMessageFor(x => x.Address, "", new { @style = "color:red" })
+                        </td>
+
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+
+                            <label style="font-size:16px;"><b>Phone : </b></label>
+
+                        </th>
+
+
+
+                        <td>
+                            @Html.TextBoxFor(x => x.Phone, new { @class = "form", @placeholder = "e.g 5555555555" })
+                        </td>
+
+                        <td>
+                            &nbsp;&nbsp;
+                            @Html.ValidationMessageFor(x => x.Phone, "", new { @style = "color:red" })
+                        </td>
+
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td></td>
+
+                        <td>
+
+                            <br />
+
+                            <input type="submit" id="button" value="Submit" class="btn btn-success; but" /> &nbsp;&nbsp;
+                        </td>
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <br />
+                            <p style="color:red">@ViewBag.error</p>
+
+                        </td>
+                    </tr>
+
+
+                </table>
+
+            </div>
+
+
+
+        </form>
+    }
+</body>
+</html>
+

@@ -1,0 +1,177 @@
+﻿@using EcommerceProject2.Models;
+@model IEnumerable<Products>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        
+        .container {
+            position: relative;
+        }
+
+       
+        .mySlides {
+            display: none;
+        }
+
+        
+        .cursor {
+            cursor: pointer;
+        }
+
+  
+        .caption-container {
+            text-align: center;
+            background-color: #222;
+            padding: 2px 16px;
+            color: white;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        
+        .column {
+            float: left;
+            width: 16.66%;
+        }
+
+        
+        .demo {
+            opacity: 0.6;
+        }
+
+        .active,
+        .demo:hover {
+             opacity: 1;
+        }
+
+        .sidebar {
+            text-decoration: none;
+           
+            display: flex;
+            flex-wrap: nowrap;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 0px;
+            padding-left: 40px;
+            display:inline-block;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #333;
+            text-transform: capitalize;
+            display: block;
+            padding-left:10px;
+            padding-right:10px;
+            align-items: center;
+            font-size: 25px;
+                
+        }
+
+         .sidebar a img {
+            margin-right: 10px;
+
+         }
+
+         .sidebar a:hover {
+              text-decoration: none;
+              background-color: lightpink;
+         }
+
+    </style>
+</head>
+<body>
+    <br />
+    @*Advertisement and Category bar*@
+    <div class="body">
+        <div class="sidebar">
+            <ul>
+                @{
+                    var id = 14;
+                    <li> <a href="@Url.Action("Categories", "Home", new { id })"><img src="~/Content/Images/dress.png" width="25" height="25">Dresses</a></li>
+                    id++;
+                    <li> <a href="@Url.Action("Categories", "Home", new { id  })"><img src="~/Content/Images/skirt.png" width="25" height="25">Skirts</a></li>
+                    id++;
+                    <li> <a href="@Url.Action("Categories", "Home", new { id  })"><img src="~/Content/Images/handbag.png" width="25" height="25">Bags</a></li>
+                    id++;
+                    <li> <a href="@Url.Action("Categories", "Home", new { id  })"><img src="~/Content/Images/jeans.png" width="25" height="25">Jeans</a></li>
+                    id++;
+                    <li><a href="@Url.Action("Categories", "Home", new { id  })"><img src="~/Content/Images/sneakers.png" width="25" height="25">Shoes</a></li>
+                    id++;
+                    <li><a href="@Url.Action("Categories", "Home", new { id })"><img src="~/Content/Images/tshirt.png" width="25" height="25">Shirts</a></li>
+                    }
+                </ul>
+        </div>
+        <br />
+        <div class="header">
+
+            <div class="container">
+
+                <!-- Full-width images with number text -->
+                <div class="mySlides">
+
+                    <img src="~/Content/Images/Add.png" style="width:100%">
+                </div>
+
+                <div class="mySlides">
+
+                    <img src="~/Content/Images/Addd.png" style="width:100%">
+                </div>
+
+                <div class="mySlides">
+
+                    <img src="~/Content/Images/Adddd.png" style="width:100%">
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+
+        @Html.Partial("PartialView", TempData["products"])
+        
+    </div>
+
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    </script>
+
+</body>
+</html>

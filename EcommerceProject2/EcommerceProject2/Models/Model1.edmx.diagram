@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="66bdba7bc16047d188cfd51111621730" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="EcommerceDBModel.Admin" Width="1.5" PointX="0.625" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Category" Width="1.5" PointX="3.375" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Customer" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Inventory_Table" Width="1.5" PointX="11" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Order_Cart_Table" Width="1.5" PointX="6.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Products" Width="1.5" PointX="6.25" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="EcommerceDBModel.FK_Admin_id" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK_Category_admin_id" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK_Category_id" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK_Order_Cart_Customer_id" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK_Inventory_id" ManuallyRouted="false" />
+        <AssociationConnector Association="EcommerceDBModel.FK_Product_id" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Order_Table" Width="1.5" PointX="9.75" PointY="6" />
+        <AssociationConnector Association="EcommerceDBModel.FK_Order_Table_Customer_id" />
+        <AssociationConnector Association="EcommerceDBModel.FK_Order_Table_Product_id" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
